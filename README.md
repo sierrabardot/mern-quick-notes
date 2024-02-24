@@ -1,1 +1,1 @@
-# mern-starter
+# MERN Starter
