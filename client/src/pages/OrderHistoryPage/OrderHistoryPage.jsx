@@ -1,17 +1,25 @@
 import { useState } from 'react';
-import { retrieveToken } from '../../utilities/users-service';
+import { checkToken } from '../../utilities/users-api';
+
 export function OrderHistoryPage() {
-    const [user, setUser] = useState(null);
-    const checkTokenExpiry = async () => {
-        const user = await retrieveToken();
-        console.info(user);
-        setUser(user);
+    const [expiry, setExpiry] = useState(null);
+
+    async function checkExpiryDate() {
+        setExpiry(await checkToken());
     }
+
     return (
         <>
             <h1>Order History Page</h1>
-            <button onClick={checkTokenExpiry}>Check token expiry</button>
-            <div>{user && new Date(user.exp).toString()}</div>
+            <div>
+                <button onClick={checkExpiryDate}>Check Expiry Date</button>
+                {expiry && (
+                    <div>
+                        Your session expires{' '}
+                        {new Date(expiry * 1000).toString()}
+                    </div>
+                )}
+            </div>
         </>
     );
 }

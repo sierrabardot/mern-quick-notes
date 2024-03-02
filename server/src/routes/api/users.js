@@ -1,6 +1,6 @@
 const express = require('express');
 const usersCtrl = require('../../controllers/users.js');
-const ensureLoggedIn = require('../../config/ensure-logged-in.js');
+const ensureLoggedIn = require('../../middleware/ensure-logged-in.js');
 
 const router = express.Router();
 

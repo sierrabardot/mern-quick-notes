@@ -8,6 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express');
 const logger = require('morgan');
+const checkToken = require('./middleware/check-token')
 const usersApi = require('./routes/api/users');
 
 // Connect to the database
@@ -22,7 +23,7 @@ app.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
 
 // Middleware to verify token and assign user object of payload to req.user.
 // Be sure to mount before routes
-app.use(require('./config/check-token'));
+app.use(checkToken);
 
 app.get('/api/test', (req, res) => {
     res.json({ hello: 'There' });
