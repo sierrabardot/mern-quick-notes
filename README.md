@@ -27,3 +27,7 @@ Start the production server
 ```
 npm start
 ```
+
+## Environment variables.
+
+Copy `.env.example` to `.env` and update as needed.
