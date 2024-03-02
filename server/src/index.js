@@ -20,6 +20,10 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
 
+// Middleware to verify token and assign user object of payload to req.user.
+// Be sure to mount before routes
+app.use(require('./config/check-token'));
+
 app.get('/api/test', (req, res) => {
     res.json({ hello: 'There' });
 });

@@ -1,40 +1,18 @@
 // interface to the backend
 // whatever API paths the backend provides, this module matches them, consumes them
 
+import sendRequest from './send-request';
+
+const BASE_URL = `/api/users`;
 // POST /users
 export async function createUser(userData) {
-    const response = await fetch(`/api/users`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData),
-    });
-
-    if(response.ok) {
-        return response.json();
-    } else {
-        throw new Error(`An error occurred with the sign up`);
-    }
+    return sendRequest(BASE_URL, 'POST', userData);
 }
 
 export async function login(userData) {
-    const response = await fetch(`/api/users/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData),
-    });
-
-    if(response.ok) {
-        return response.json();
-    } else {
-        throw new Error(`An error occurred with the login`);
-    }
+    return sendRequest(`${BASE_URL}/login`, 'POST', userData);
 }
 
-// GET /users/current
-async function getCurrentUser() {
-
+export async function checkToken() {
+    return sendRequest(`${BASE_URL}/check-token`);
 }

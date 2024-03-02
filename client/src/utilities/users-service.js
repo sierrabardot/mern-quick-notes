@@ -1,4 +1,4 @@
-import { createUser, login as loginAPI } from './users-api';
+import { checkToken, createUser, login as loginAPI } from './users-api';
 
 export async function signUp(userData) {
     // Use the users API to create a new user
@@ -43,4 +43,8 @@ export function getUser() {
     const token = getToken();
     // If there's a token, return the user in the payload, otherwise return null
     return token ? JSON.parse(atob(token.split('.')[1])) : null;
+}
+
+export async function retrieveToken(){
+    return checkToken();
 }
