@@ -1,43 +1,42 @@
 import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { NewOrderPage } from '../NewOrderPage/NewOrderPage';
 import { AuthPage } from '../AuthPage';
-import { OrderHistoryPage } from '../OrderHistoryPage/OrderHistoryPage';
+import { NotesPage } from '../NotesPage/NotesPage';
 import { getUser } from '../../utilities/users-service';
 import { NavBar } from '../../components/NavBar';
 
-import style from './style.module.css';
+import './App.css';
 
 function App() {
     const [user, setUser] = useState(() => {
-        return getUser();
-    });
+        return getUser()
+    })
 
     return (
         <>
             <header>
                 <NavBar user={user} setUser={setUser} />
             </header>
-            <main className='App'>
-                {user ? (
+        <main className="App">
+            { user ? (
+                <>
                     <Routes>
-                        <Route
-                            path='/'
-                            element={<Navigate to='/orders' replace />}
-                        />
-                        <Route path='/orders/new' element={<NewOrderPage />} />
-                        <Route path='/orders' element={<OrderHistoryPage />} />
-                        <Route path='*' element={<Navigate to='/' replace />} />
+                        <Route path='/' element={<Navigate to='/notes' replace />} />
+                        <Route path="/notes" element={<NotesPage />} />
+                        <Route path='/*' element={<Navigate to='/' replace />} />
                     </Routes>
-                ) : (
-                    <Routes>
-                        <Route path='/auth' element={<AuthPage setUser={setUser} />} />
-                        <Route path='*' element={<Navigate to='/auth' />} />
-                    </Routes>
-                )}
-            </main>
-            <footer></footer>
-        </>
+                </>
+            ) : (
+                <Routes>
+                    <Route path='/login' element={<AuthPage setUser={setUser} />} />
+                    <Route path='/signup' element={<AuthPage setUser={setUser} />} />
+                    <Route path='/*' element={<Navigate to='/login' setUser={setUser} />} />
+                </Routes>
+            )
+            }
+        </main>
+        <footer></footer>
+    </>
     );
 }
 

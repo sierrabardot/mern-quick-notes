@@ -44,41 +44,55 @@ export function SignUpForm({ setUser }) {
         <div>
             <div className={`form-container`}>
                 <form autoComplete='off' onSubmit={handleSubmit}>
-                    <label>Name</label>
+                    <div className="mb-3">
+                        <label className='form-label'>Name</label>
+                        <input
+                            className='form-control'
+                            type='text'
+                            name='name'
+                            value={form.name}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                    <label className='form-label'>Email</label>
                     <input
-                        type='text'
-                        name='name'
-                        value={form.name}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label>Email</label>
-                    <input
+                        className='form-control'
                         type='email'
                         name='email'
                         value={form.email}
                         onChange={handleChange}
                         required
                     />
-                    <label>Password</label>
+                    </div>
+                    <div className="mb-3">
+                    <label className='form-label'>Password</label>
                     <input
+                        className='form-control'
                         type='password'
                         name='password'
                         value={form.password}
                         onChange={handleChange}
                         required
                     />
-                    <label>Confirm Password</label>
+                    </div>
+                    <div className="mb-3">
+                    <label className='form-label'>Confirm Password</label>
                     <input
+                        className='form-control'
                         type='password'
                         name='confirmPassword'
                         value={form.confirmPassword}
                         onChange={handleChange}
                         required
                     />
-                    <button type='submit' disabled={disable}>
+                    </div>
+                    <div className="mb-3">
+                    <button className="btn btn-primary" type='submit' disabled={disable}>
                         Sign up
                     </button>
+                    </div>
                 </form>
             </div>
             <p className='error-message'>{error}</p>

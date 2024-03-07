@@ -31,30 +31,22 @@ export function LoginForm({ setUser }) {
 
     return (
         <div>
-            <div className={`form-container`}>
-                <form autoComplete='off' onSubmit={handleSubmit}>
-                    <label>Email</label>
-                    <input
-                        type='email'
-                        name='email'
-                        value={form.email}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label>Password</label>
-                    <input
-                        type='password'
-                        name='password'
-                        value={form.password}
-                        onChange={handleChange}
-                        required
-                    />
-                    <button type='submit' disabled={disable}>
-                        Login
-                    </button>
+            <div className="form-container">
+                <form autoComplete="off" onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className='form-label'>Email</label>
+                        <input className='form-control' type="text" name="email" value={form.email} onChange={handleChange} required />
+                    </div>
+                    <div className="mb-3">
+                        <label className='form-label'>Password</label>
+                        <input className='form-control' type="password" name="password" value={form.password} onChange={handleChange} required />
+                    </div>
+                    <div className="mb-3">
+                        <button className="btn btn-primary" type="submit">Log In</button>
+                    </div>
                 </form>
             </div>
-            <p className='error-message'>{error}</p>
+            <p className="error-message">{error}</p>
         </div>
-    );
+    )
 }
