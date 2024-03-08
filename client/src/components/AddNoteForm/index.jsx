@@ -15,7 +15,8 @@ export function AddNoteForm({ notes, setNotes }) {
         e.preventDefault();
         try {
             const note = await notesAPI.createNote(form)
-            setNotes({ ...notes, note })
+            setNotes(prevNotes => [...prevNotes, note]);
+            setForm({ text: '' })
         } catch (error) {
             setError(error)
         }

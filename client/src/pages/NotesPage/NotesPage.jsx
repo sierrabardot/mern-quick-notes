@@ -18,7 +18,7 @@ export function NotesPage() {
         <div>
             <AddNoteForm notes={notes} setNotes={setNotes} />
             { notes ? (
-                <NotesList notes={notes} />
+                <NotesList notes={notes} setNotes={setNotes} />
             ) : (
                 <>
                     <p>No Notes Yet!</p>

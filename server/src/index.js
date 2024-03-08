@@ -9,7 +9,6 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const logger = require('morgan');
 const checkToken = require('./middleware/check-token');
-const bodyParser = require('body-parser');
 const usersApi = require('./routes/api/users');
 const notesApi = require('./routes/api/notes');
 
@@ -21,7 +20,6 @@ const app = express();
 app.use(logger('dev'));
 app.use(express.json());
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
 
 // Middleware to verify token and assign user object of payload to req.user.

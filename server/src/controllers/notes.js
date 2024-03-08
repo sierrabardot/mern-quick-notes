@@ -3,6 +3,7 @@ const Notes = require('../models/note');
 module.exports = {
     getNotes,
     create,
+    delete: deleteNote,
 };
 
 async function getNotes(req, res) {
@@ -24,6 +25,22 @@ async function create(req, res) {
     try {
         const note = await Notes.create(noteData);
         res.json(note);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            error: error,
+        });
+    }
+}
+
+async function deleteNote(req, res) {
+    try {
+        const note = await Notes.findOne({
+            user: req.user.sub,
+            _id: req.params.id,
+        });
+        await Notes.deleteOne(note);
+        res.status(204).json();
     } catch (error) {
         console.error(error);
         res.status(400).json({
